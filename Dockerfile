@@ -66,7 +66,9 @@ RUN cd /tmp && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
 
+#Install pyMySql and extensions for notebook
 RUN pip install PyMySQL
+RUN conda install -c conda-forge jupyter_nbextensions_configurator
 
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
