@@ -68,10 +68,10 @@ RUN cd /tmp && \
 
 #Install pyMySql and extensions for notebook
 RUN pip install PyMySQL
-RUN sudo pip install --upgrade jupyter_contrib_nbextensions
-RUN sudo jupyter contrib nbextension install --system
-RUN sudo jupyter contrib nbextension install --user
-RUN sudo pip install jupyter_nbextensions_configurator
+RUN pip install --upgrade jupyter_contrib_nbextensions
+RUN jupyter contrib nbextension install --system
+RUN jupyter contrib nbextension install --user
+RUN pip install jupyter_nbextensions_configurator
 RUN jupyter nbextensions_configurator enable --system
 RUN jupyter nbextensions_configurator enable --user
 
