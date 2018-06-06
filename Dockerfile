@@ -68,12 +68,17 @@ RUN cd /tmp && \
 
 #Install pyMySql and extensions for notebook
 RUN pip install PyMySQL
+
+USER root
+
 RUN pip install --upgrade jupyter_contrib_nbextensions
 RUN jupyter contrib nbextension install --system
 RUN jupyter contrib nbextension install --user
 RUN pip install jupyter_nbextensions_configurator
 RUN jupyter nbextensions_configurator enable --system
 RUN jupyter nbextensions_configurator enable --user
+
+USER $NB_UID
 
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
