@@ -12,12 +12,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN rm -r /home/jovyan/
-
 USER $NB_UID
-
-RUN sudo -u jovyan mkdir /home/jovyan/.jupyter
-RUN sudo -u jovyan mkdir /home/jovyan/work
 
 # Install Python 3 packages
 # Remove pyqt and qt pulled in for matplotlib since we're only ever going to
