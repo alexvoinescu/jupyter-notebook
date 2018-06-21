@@ -72,7 +72,7 @@ RUN pip install PyMySQL
 USER root
 
 RUN mkdir /home/jovyan/.jupyter
-RUN chown -R joyvan.joyvan /home/joyvan
+RUN chmod -R 777 /home/joyvan
 RUN pip install --upgrade jupyter_contrib_nbextensions
 RUN jupyter contrib nbextension install --system
 RUN jupyter contrib nbextension install --user
