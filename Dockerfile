@@ -78,6 +78,20 @@ RUN pip install jupyter_nbextensions_configurator
 RUN jupyter nbextensions_configurator enable --system
 RUN jupyter nbextensions_configurator enable --user
 
+RUN pip install cython \
+                matplotlib \
+                python-dateutil \
+                pytz \
+                pyparsing \
+                pandas \
+                numpy \
+                openpyxl \
+                xlrd \
+                six \
+                numexpr \
+                statsmodels \
+                requests
+
 USER $NB_UID
 
 # Import matplotlib the first time to build the font cache.
