@@ -90,7 +90,9 @@ RUN pip install cython \
                 six \
                 numexpr \
                 statsmodels \
-                requests
+                requests \
+                openpyxl \
+                pillow
 
 USER $NB_UID
 
