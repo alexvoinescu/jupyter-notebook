@@ -3,7 +3,6 @@
 FROM jupyter/minimal-notebook
 
 LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
-
 USER root
 
 # libav-tools for matplotlib anim
