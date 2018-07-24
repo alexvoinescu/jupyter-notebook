@@ -93,7 +93,7 @@ RUN pip install cython \
                 requests \
                 openpyxl \
                 pillow \
-                yasf
+                yapf
 
 USER $NB_UID
 
