@@ -92,7 +92,8 @@ RUN pip install cython \
                 statsmodels \
                 requests \
                 openpyxl \
-                pillow
+                pillow \
+                yasf
 
 USER $NB_UID
 
