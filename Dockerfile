@@ -8,6 +8,7 @@ USER root
 # libav-tools for matplotlib anim
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ffmpeg && \
+    apt-get install -y gcc mono-mcs && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
