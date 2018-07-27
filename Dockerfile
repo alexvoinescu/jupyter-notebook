@@ -10,6 +10,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends ffmpeg && \
     apt-get install -y gcc mono-mcs && \
     apt-get install -y unixodbc unixodbc-dev && \
+    apt-get install -y libmysqlclient-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -95,7 +96,8 @@ RUN pip install cython \
                 openpyxl \
                 pillow \
                 yapf \
-                pyodbc
+                pyodbc \
+                mysqlclient
 
 USER $NB_UID
 
