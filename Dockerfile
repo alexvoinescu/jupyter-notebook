@@ -73,6 +73,7 @@ RUN pip install PyMySQL
 
 USER root
 
+RUN pip install --upgrade pip
 RUN pip install --upgrade jupyter_contrib_nbextensions
 RUN jupyter contrib nbextension install --system
 RUN jupyter contrib nbextension install --user
