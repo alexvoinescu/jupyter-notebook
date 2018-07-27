@@ -12,6 +12,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN pip install --upgrade pip
+
 USER $NB_UID
 
 # Install Python 3 packages
@@ -71,6 +73,8 @@ RUN pip install PyMySQL
 
 USER root
 
+RUN apt-get install libmysqlclient-dev
+
 RUN pip install --upgrade jupyter_contrib_nbextensions
 RUN jupyter contrib nbextension install --system
 RUN jupyter contrib nbextension install --user
@@ -94,7 +98,8 @@ RUN pip install cython \
                 openpyxl \
                 pillow \
                 yapf \
-                pyodbc
+                pyodbc \
+                mysqlclient
 
 USER $NB_UID
 
