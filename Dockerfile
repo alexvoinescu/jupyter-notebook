@@ -98,7 +98,8 @@ RUN pip install cython \
                 pillow \
                 yapf \
                 pyodbc \
-                mysqlclient
+                mysqlclient \
+                autopep8
 
 USER $NB_UID
 
