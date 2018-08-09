@@ -99,7 +99,8 @@ RUN pip install cython \
                 yapf \
                 pyodbc \
                 mysqlclient \
-                autopep8
+                autopep8 \
+                xlsxwriter
 
 USER $NB_UID
 
