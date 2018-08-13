@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-FROM jupyter/minimal-notebook
+FROM jupyter/minimal-notebook:45e010d9e849
 
 LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
 USER root
