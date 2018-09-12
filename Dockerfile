@@ -49,7 +49,7 @@ RUN conda install --quiet --yes \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
     # Also activate ipywidgets extension for JupyterLab
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.36 && \
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.37 && \
     jupyter labextension install jupyterlab_bokeh && \
     npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
@@ -101,6 +101,8 @@ RUN pip install cython \
                 mysqlclient \
                 autopep8 \
                 xlsxwriter
+
+RUN conda install -c conda-forge beakerx ipywidgets
 
 USER $NB_UID
 
