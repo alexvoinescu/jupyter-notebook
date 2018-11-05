@@ -13,6 +13,7 @@ RUN apt-get update && \
     apt-get install -y libmysqlclient-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+RUN conda install requests-kerberos -y
 
 USER $NB_UID
 
@@ -110,5 +111,16 @@ USER $NB_UID
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
 RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot" && \
     fix-permissions /home/$NB_USER
+
+RUN pip install --upgrade pip
+RUN pip install --upgrade --ignore-installed setuptools
+
+RUN pip install widgetsnbextension
+RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
+RUN pip install hdijupyterutils
+RUN pip install sparkmagic
+RUN jupyter serverextension enable --py sparkmagic
+
+CMD ["start-notebook.sh", "--NotebookApp.iopub_data_rate_limit=1000000000"]
 
 USER $NB_UID
