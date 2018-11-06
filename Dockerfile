@@ -14,6 +14,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 RUN conda install requests-kerberos -y
+RUN chown -R $NB_UID:users /home/jovyan/.local/
 
 USER $NB_UID
 
@@ -112,15 +113,16 @@ ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
 RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot" && \
     fix-permissions /home/$NB_USER
 
-RUN pip install --upgrade pip
-RUN pip install --upgrade --ignore-installed setuptools
+RUN pip install --user --upgrade pip
+RUN pip install --user --upgrade --ignore-installed setuptools
 
 RUN pip install widgetsnbextension
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 RUN pip install hdijupyterutils
+RUN pip install autovizwidget
 RUN pip install sparkmagic
-RUN jupyter serverextension enable --py sparkmagic
 
-CMD ["start-notebook.sh", "--NotebookApp.iopub_data_rate_limit=1000000000"]
+USER root
+RUN jupyter serverextension enable --py sparkmagic
 
 USER $NB_UID
