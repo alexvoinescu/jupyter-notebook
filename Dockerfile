@@ -76,6 +76,7 @@ RUN pip install PyMySQL
 USER root
 
 RUN pip install --upgrade pip
+RUN pip install --user --upgrade --ignore-installed setuptools
 RUN pip install --upgrade jupyter_contrib_nbextensions
 RUN jupyter contrib nbextension install --system
 RUN jupyter contrib nbextension install --user
@@ -113,11 +114,11 @@ ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
 RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot" && \
     fix-permissions /home/$NB_USER
 
-RUN pip install --user --upgrade pip
-RUN pip install --user --upgrade --ignore-installed setuptools
+#RUN pip install --user --upgrade pip
+#RUN pip install --user --upgrade --ignore-installed setuptools
 
-RUN pip install widgetsnbextension
-RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
+#RUN pip install widgetsnbextension
+#RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 RUN pip install hdijupyterutils
 RUN pip install autovizwidget
 RUN pip install sparkmagic
