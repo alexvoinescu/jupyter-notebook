@@ -73,8 +73,6 @@ RUN pip install PyMySQL
 
 USER root
 
-#RUN conda install python=3.7 anaconda=custom
-
 RUN pip install --upgrade pip
 RUN pip install --upgrade jupyter_contrib_nbextensions
 RUN jupyter contrib nbextension install --system
