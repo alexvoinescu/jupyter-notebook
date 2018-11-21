@@ -16,47 +16,52 @@ RUN apt-get update && \
 
 USER $NB_UID
 
+RUN conda update -n base conda
+
 # Install Python 3 packages
 # Remove pyqt and qt pulled in for matplotlib since we're only ever going to
 # use notebook-friendly backends in these images
 RUN conda install --quiet --yes \
     'blas=*=openblas' \
-    'ipywidgets=7.2*' \
-    'pandas=0.22*' \
-    'numexpr=2.6*' \
-    'matplotlib=2.1*' \
-    'scipy=1.0*' \
-    'seaborn=0.8*' \
-    'scikit-learn=0.19*' \
-    'scikit-image=0.13*' \
-    'sympy=1.1*' \
-    'cython=0.28*' \
-    'patsy=0.5*' \
-    'statsmodels=0.8*' \
-    'cloudpickle=0.5*' \
-    'dill=0.2*' \
-    'numba=0.38*' \
-    'bokeh=0.12*' \
-    'sqlalchemy=1.2*' \
-    'hdf5=1.10*' \
-    'h5py=2.7*' \
-    'vincent=0.4.*' \
-    'beautifulsoup4=4.6.*' \
-    'protobuf=3.*' \
-    'xlrd'  && \
-    conda remove --quiet --yes --force qt pyqt && \
-    conda clean -tipsy && \
+    'ipywidgets' \
+    'pandas*' \
+    'numexpr' \
+    'matplotlib' \
+    'scipy' \
+    'seaborn' \
+    'scikit-learn' \
+    'scikit-image' \
+    'sympy' \
+    'cython' \
+    'patsy' \
+    'statsmodels' \
+    'cloudpickle' \
+    'dill' \
+    'numba' \
+    'bokeh' \
+    'sqlalchemy' \
+    'hdf5' \
+    'h5py' \
+    'vincent' \
+    'beautifulsoup4=' \
+    'protobuf' \
+    'xlrd' && \
+    conda remove --quiet --yes --force qt pyqt
+
+RUN conda clean -tipsy && \
     # Activate ipywidgets extension in the environment that runs the notebook server
-    jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
+    jupyter nbextension enable --py widgetsnbextension --sys-prefix
     # Also activate ipywidgets extension for JupyterLab
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.37 && \
-    jupyter labextension install jupyterlab_bokeh && \
-    npm cache clean --force && \
-    rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
-    rm -rf /home/$NB_USER/.cache/yarn && \
-    rm -rf /home/$NB_USER/.node-gyp && \
-    fix-permissions $CONDA_DIR && \
-    fix-permissions /home/$NB_USER
+    #jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.37 && \
+    #jupyter labextension install jupyterlab_bokeh && \
+
+RUN npm cache clean --force
+RUN rm -rf $CONDA_DIR/share/jupyter/lab/staging
+RUN rm -rf /home/$NB_USER/.cache/yarn
+RUN rm -rf /home/$NB_USER/.node-gyp
+RUN fix-permissions $CONDA_DIR
+RUN fix-permissions /home/$NB_USER
+
 
 # Install facets which does not have a pip or conda package at the moment
 RUN cd /tmp && \
@@ -100,9 +105,16 @@ RUN pip install cython \
                 pyodbc \
                 mysqlclient \
                 autopep8 \
-                xlsxwriter
+                xlsxwriter \
+                pymongo \
+                selenium \
+                tweepy
 
 RUN conda install -c conda-forge beakerx ipywidgets
+
+RUN conda upgrade notebook
+
+RUN conda install python=3.7 anaconda=custom
 
 USER $NB_UID
 
