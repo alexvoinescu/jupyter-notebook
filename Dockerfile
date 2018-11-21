@@ -5,8 +5,6 @@ FROM jupyter/minimal-notebook
 LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
 USER root
 
-RUN conda install python=3.7 anaconda=custom
-
 # libav-tools for matplotlib anim
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ffmpeg && \
@@ -74,6 +72,8 @@ RUN cd /tmp && \
 RUN pip install PyMySQL
 
 USER root
+
+#RUN conda install python=3.7 anaconda=custom
 
 RUN pip install --upgrade pip
 RUN pip install --upgrade jupyter_contrib_nbextensions
