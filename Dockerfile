@@ -5,6 +5,8 @@ FROM jupyter/minimal-notebook
 LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
 USER root
 
+RUN conda install python=3.7 anaconda=custom
+
 # libav-tools for matplotlib anim
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ffmpeg && \
