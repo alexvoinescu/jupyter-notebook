@@ -13,9 +13,19 @@ RUN python --version
 RUN conda install python=3.7 anaconda=custom
 RUN python --version
 
-RUN conda install -c bioconda mysqlclient 
+RUN conda install -c conda-forge mysqlclient 
 RUN conda install -c conda-forge jupyter_contrib_nbextensions
-
+RUN conda install -c conda-forge numpy
+RUN conda install -c conda-forge xlsxwriter
+RUN conda install -c conda-forge plotly 
+RUN conda install -c conda-forge requests
+RUN conda install -c conda-forge json
+RUN conda install -c conda-forge datetime
+RUN conda install -c conda-forge time
+RUN conda install -c conda-forge random
+RUN conda install -c conda-forge ipython
+#RUN conda install -c conda-forge matplotlib 
+ 
 USER root
 
 RUN jupyter contrib nbextension install --system
