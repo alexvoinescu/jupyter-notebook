@@ -2,7 +2,8 @@
 # Distributed under the terms of the Modified BSD License.
 FROM jupyter/minimal-notebook
 
-LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
+LABEL maintainer="Alexandru Voinescu <voinescu.alex@gmail.com>"
+#This is a mess
 USER root
 
 # libav-tools for matplotlib anim
@@ -17,6 +18,7 @@ RUN apt-get update && \
 USER $NB_UID
 
 RUN conda update -n base conda
+RUN pip install --upgrade pip
 
 # Install Python 3 packages
 # Remove pyqt and qt pulled in for matplotlib since we're only ever going to
@@ -48,9 +50,9 @@ RUN conda install --quiet --yes \
     'xlrd' && \
     conda remove --quiet --yes --force qt pyqt
 
-RUN conda clean -tipsy && \
+#RUN conda clean -tipsy && \
     # Activate ipywidgets extension in the environment that runs the notebook server
-    jupyter nbextension enable --py widgetsnbextension --sys-prefix
+    # jupyter nbextension enable --py widgetsnbextension --sys-prefix
     # Also activate ipywidgets extension for JupyterLab
     #jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.37 && \
     #jupyter labextension install jupyterlab_bokeh && \
@@ -78,7 +80,6 @@ RUN pip install PyMySQL
 
 USER root
 
-RUN pip install --upgrade pip
 RUN pip install --upgrade jupyter_contrib_nbextensions
 RUN jupyter contrib nbextension install --system
 RUN jupyter contrib nbextension install --user
@@ -115,6 +116,15 @@ RUN conda install -c conda-forge beakerx ipywidgets
 RUN conda upgrade notebook
 
 RUN conda install python=3.7 anaconda=custom
+
+RUN python --version
+
+RUN pip install ipywidgets
+RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
+RUN jupyter nbextension install facets-dist/ 
+
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+RUN jupyter labextension install jupyterlab_bokeh
 
 USER $NB_UID
 
