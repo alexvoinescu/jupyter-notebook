@@ -21,10 +21,10 @@ RUN conda install -c conda-forge plotly
 RUN conda install -c conda-forge requests
 RUN conda install -c jmcmurray json 
 RUN conda install -c conda-forge time
-#RUN conda install -c conda-forge random
 RUN conda install -c conda-forge ipython
-#RUN conda install -c conda-forge matplotlib 
-#RUN conda install -c conda-forge beakerx
+RUN conda install -c conda-forge matplotlib 
+RUN conda install -c conda-forge beakerx
+RUN conda install -c conda-forge ipywidgets
  
 RUN pip install DateTime
 RUN pip install random2
@@ -43,7 +43,7 @@ USER $NB_UID
 
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
-#RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot"
+RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot"
 RUN fix-permissions /home/$NB_USER
 
 RUN python --version
