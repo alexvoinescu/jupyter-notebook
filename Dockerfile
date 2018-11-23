@@ -19,13 +19,16 @@ RUN conda install -c conda-forge numpy
 RUN conda install -c conda-forge xlsxwriter
 RUN conda install -c conda-forge plotly 
 RUN conda install -c conda-forge requests
-RUN conda install -c conda-forge json
-RUN conda install -c conda-forge datetime
+RUN conda install -c jmcmurray json 
 RUN conda install -c conda-forge time
-RUN conda install -c conda-forge random
+#RUN conda install -c conda-forge random
 RUN conda install -c conda-forge ipython
 #RUN conda install -c conda-forge matplotlib 
+#RUN conda install -c conda-forge beakerx
  
+RUN pip install DateTime
+RUN pip install random2
+
 USER root
 
 RUN jupyter contrib nbextension install --system
