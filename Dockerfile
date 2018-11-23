@@ -3,7 +3,6 @@
 FROM jupyter/scipy-notebook
 
 LABEL maintainer="Alexandru Voinescu <voinescu.alex@gmail.com>"
-#This is a mess
 
 USER $NB_UID
 
@@ -28,6 +27,30 @@ RUN conda install -c conda-forge ipywidgets
  
 RUN pip install DateTime
 RUN pip install random2
+
+RUN conda install -c conda-forge certifi 
+RUN conda install -c conda-forge chardet 
+RUN conda install -c conda-forge cycler
+RUN conda install -c conda-forge cython
+RUN conda install -c conda-forge et_xmlfile 
+RUN conda install -c conda-forge idna
+RUN conda install -c conda-forge jdcal
+RUN conda install -c conda-forge numexpr 
+RUN conda install -c conda-forge numpy 
+RUN conda install -c conda-forge openpyxl
+RUN conda install -c conda-forge pandas
+RUN conda install -c conda-forge patsy
+RUN conda install -c conda-forge pyparsing
+RUN conda install -c conda-forge python-dateutil
+RUN conda install -c conda-forge pytz
+RUN conda install -c conda-forge scipy
+RUN conda install -c conda-forge six
+RUN conda install -c conda-forge statsmodels
+RUN conda install -c conda-forge typing
+RUN conda install -c conda-forge urllib3
+RUN conda install -c conda-forge xlrd
+RUN conda install -c conda-forge xlsxwriter
+RUN conda install -c conda-forge decorator
 
 USER root
 
