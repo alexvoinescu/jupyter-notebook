@@ -72,7 +72,5 @@ RUN fix-permissions /home/$NB_USER
 RUN python --version
 
 RUN pip install IP2Location
-
 RUN pip install tqdm
-
-RUN pip install --user awscli
+RUN pip install boto3
