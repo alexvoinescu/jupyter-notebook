@@ -75,4 +75,5 @@ RUN pip install IP2Location
 RUN pip install tqdm
 RUN pip install boto3
 
-RUN pip install snowflake-connector-python
+RUN pip install --upgrade snowflake-connector-python
+
