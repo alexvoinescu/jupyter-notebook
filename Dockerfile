@@ -21,6 +21,7 @@ RUN conda install -c conda-forge requests
 RUN conda install -c jmcmurray json 
 RUN conda install -c conda-forge time
 RUN conda install -c conda-forge ipython
+RUN conda install tornado=5.1.1
 RUN conda install -c conda-forge matplotlib 
 RUN conda install -c conda-forge beakerx
 RUN conda install -c conda-forge ipywidgets
