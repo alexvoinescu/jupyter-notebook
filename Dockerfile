@@ -52,6 +52,7 @@ RUN conda install -c conda-forge urllib3
 RUN conda install -c conda-forge xlrd
 RUN conda install -c conda-forge xlsxwriter
 RUN conda install -c conda-forge decorator
+RUN conda install -c anaconda wget
 
 USER root
 
